@@ -3,7 +3,6 @@
 <%--<%@ page import="search.SearchDao.*" language="java" %>--%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
-<%--<!DOCTYPE html>--%>
 <html>
 
 <head>
