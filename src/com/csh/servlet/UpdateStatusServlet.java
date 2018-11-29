@@ -26,6 +26,7 @@ public class UpdateStatusServlet extends HttpServlet {
         Map<String, String[]> querymap = request.getParameterMap();
         for (String key:querymap.keySet()){
             if (key.equals("username")){
+                //≤ª”√º”getBytes("iso")
                 username=new String(querymap.get(key)[0].getBytes(),"UTF-8");
                 System.out.println(username);
             }else if (key.equals("status")){
