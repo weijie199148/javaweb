@@ -23,7 +23,7 @@ public class ServletRequst extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=utf-8"); // 处理响应乱码问题:字节流需getBytes("UTF-8")
         //String loginTmpCodeNew = request.getParameter(loginTmpCode);
         String code=new String(request.getParameter("code").getBytes("ISO8859-1"),"UTF-8");
         DingLogin dingLogin=new DingLogin();
@@ -37,6 +37,8 @@ public class ServletRequst extends HttpServlet {
         session.setAttribute("username",name);
         //String loginTmpCode=new String(request.getParameter("loginTmpCode").getBytes("ISO8859-1"),"UTF-8");
         //System.out.println(code);
-        request.getRequestDispatcher("/index.jsp").forward(request,response);
+        //request.getRequestDispatcher("/index.jsp").forward(request,response);
+        //扫码登录后重定向到首页，注意：使用forward转发不能改变地址栏的信息，使用重定向response.sendRedirect()，可以改变地址信息
+        response.sendRedirect("/javawebservlet/index.jsp");
     }
 }

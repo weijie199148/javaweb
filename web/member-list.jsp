@@ -292,7 +292,7 @@
 
         var curr = hour * 60 * 60 + min * 60 + sec;
         //alert(curr);
-        var startime = 9 * 60 * 60 + 30 * 60;
+        var startime = 9 * 60 * 60 + 15 * 60;
         var endtime = 23 * 60 * 60 + 55 * 60;
         var startimetext="还没有到订餐时间！";
         var endtimetext="吃饭不积极，订餐已经结束了！";
