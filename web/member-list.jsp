@@ -55,7 +55,7 @@
       <span class="layui-breadcrumb">
         <%--<a href="/javawebservlet/index.jsp">首页</a>--%>
         <%--<a href="/javawebservlet/QueryTodayOrderUserServlet">订餐页面</a>--%>
-            <span style="color: red ;font-size:18px">注意：加班自己订餐的人,请自己准备发票！订餐时间：17:30--18:15</span>
+            <span style="color: red ;font-size:18px">加班自己订餐的童靴,请自己准备发票！一起订餐的订餐时间：15:30--18:15，自己订餐的不限制订餐时间！</span>
         <%--<a>--%>
           <%--<cite>导航元素</cite></a>--%>
       </span>

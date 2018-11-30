@@ -26,7 +26,7 @@
       <span class="layui-breadcrumb">
         <%--<a href="/javawebservlet/index.jsp">首页</a>--%>
         <%--<a href="/javawebservlet/QueryResultServlet">订餐结果搜索页</a>--%>
-        <span style="color: red;font-size:18px">注意：加班自己订餐的人,请自己准备发票！</span>
+        <span style="color: red;font-size:18px">注意：加班自己订餐的童鞋,请自己准备发票！</span>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        href="javascript:location.replace(location.href);" title="刷新">
@@ -75,7 +75,7 @@
     </div>
     <xblock>
         <%--<button class="layui-btn layui-btn-danger" onclick=""><i class="layui-icon"></i>批量删除</button>--%>
-        <button class="layui-btn layui-btn-danger" onclick="exporExcel()">导出Excel</button>
+        <button class="layui-btn layui-btn-danger" onclick="exporExcel()">导出Excel</button>  <span style="color: red;font-size:15px">注意：导出不加姓名的筛选</span>
         <%--<button class="layui-btn" onclick="x_admin_show('添加用户','./order-add.html')"><i class="layui-icon"></i>添加</button>--%>
         <span class="x-right" style="line-height:40px">共有数据：${pageView.totalrecordnumber} 条</span>
     </xblock>
