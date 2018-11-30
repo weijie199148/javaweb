@@ -1,25 +1,25 @@
 package csh.entity;
 
 /**
- * @author ´ÔË¬
+ * @author ä¸›çˆ½
  * @create 2018-11-08 18:04
  **/
 public class PageView {
-    //private List<Order> records;// ¼ÇÂ¼
-    private Long totalrecordnumber;// ×Ü¼ÇÂ¼Êı
-    private Integer startindex;// µÚÒ»Ò³
-    private Integer endindex;// ×îºóÒ»Ò³
-    private Integer totalpagenumber;// ×ÜÒ³Êı
-    private Integer currentpage;// µ±Ç°Ò³
+    //private List<Order> records;// è®°å½•
+    private Long totalrecordnumber;// æ€»è®°å½•æ•°
+    private Integer startindex;// ç¬¬ä¸€é¡µ
+    private Integer endindex;// æœ€åä¸€é¡µ
+    private Integer totalpagenumber;// æ€»é¡µæ•°
+    private Integer currentpage;// å½“å‰é¡µ
 
     public PageView( Long totalrecordnumber, int currentpage,
-                    int maximum, int viewperpage)
-    // ¹¹Ôìº¯Êı
+                     int maximum, int viewperpage)
+    // æ„é€ å‡½æ•°
     {
         //this.records = records;
         this.totalrecordnumber = totalrecordnumber;
         this.currentpage = currentpage;
-        //»ñµÃ×ÜÒ³Êı
+        //è·å¾—æ€»é¡µæ•°
         totalpagenumber = (int) (totalrecordnumber % maximum == 0 ? totalrecordnumber / maximum : totalrecordnumber / maximum + 1);
         setIndex(currentpage, viewperpage, totalpagenumber);
     }
@@ -48,7 +48,7 @@ public class PageView {
         return currentpage;
     }
 
-    //»ñµÃ×ÜÒ³Êı ÏÔÊ¾Ò³Êı µ±Ç°Ò³Êı µÚÒ»Ò³ ×îºóÒ»Ò³
+    //è·å¾—æ€»é¡µæ•° æ˜¾ç¤ºé¡µæ•° å½“å‰é¡µæ•° ç¬¬ä¸€é¡µ æœ€åä¸€é¡µ
     public void setIndex(int currentpage, int viewperpage, int totalpagenumber) {
         if (viewperpage >= totalpagenumber) {
             startindex = 1;

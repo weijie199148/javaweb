@@ -29,7 +29,7 @@ public class ServletRequst extends HttpServlet {
         DingLogin dingLogin=new DingLogin();
         String name1=dingLogin.goDingLogin(code);
         String name=new String(name1.getBytes("utf-8"),"UTF-8");
-        System.out.println(name);
+        //System.out.println(name);
         HttpSession session=request.getSession();
        // Map sessionmap=new HashMap();
         //sessionmap.put("name",name);

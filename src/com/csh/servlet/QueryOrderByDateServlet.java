@@ -18,11 +18,6 @@ import java.util.Map;
 @WebServlet(name = "QueryOrderByDateServlet")
 public class QueryOrderByDateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //获取完整的请求url
-//        String uri = request.getScheme() + "://"
-//                + request.getServerName() + ":" + request.getServerPort()
-//                + request.getRequestURI()
-//                + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
         request.setCharacterEncoding("utf-8");
         String start = "";
         String end = "";
@@ -30,11 +25,6 @@ public class QueryOrderByDateServlet extends HttpServlet {
         String uname = "";
         String uri = request.getRequestURL() + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
 
-
-        // 当前是第几页
-//        String currentpageStr ="1";
-//        int currentpage = Integer.parseInt(currentpageStr);
-        // 当前是第几页
         String currentpageStr = request.getParameter("currentpage") == null ? "1" : request.getParameter("currentpage");
         int currentpage = Integer.parseInt(currentpageStr);
         // 每页显示多少条

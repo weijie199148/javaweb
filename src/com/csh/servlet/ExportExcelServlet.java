@@ -30,7 +30,7 @@ public class ExportExcelServlet extends HttpServlet {
         System.out.println(uri);
         Map<String, String[]> querymap = request.getParameterMap();
 
-        //ÅĞ¶Ï²»Îª¿Õ
+        //åˆ¤æ–­ä¸ä¸ºç©º
         for (String key : querymap.keySet()) {
             String t = querymap.get(key)[0];
             if (key.equals("startdate")) {
@@ -50,14 +50,14 @@ public class ExportExcelServlet extends HttpServlet {
         }
 
         if (start.equals("") || end.equals("") || start.equals("null") || end.equals("null")) {
-            //ÅĞ¶ÏÊ±¼äÎª¿ÕÇÒ×´Ì¬Îª¿Õ
+            //åˆ¤æ–­æ—¶é—´ä¸ºç©ºä¸”çŠ¶æ€ä¸ºç©º
             if (contrller.equals("") || contrller.equals("null")) {
                 try {
                     export(request, response,SearchDao.getAll());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                //ÅĞ¶ÏÊ±¼äÎª¿Õµ«ÊÇ×´Ì¬²»Îª¿Õ
+                //åˆ¤æ–­æ—¶é—´ä¸ºç©ºä½†æ˜¯çŠ¶æ€ä¸ä¸ºç©º
             } else {
                 try {
                     export(request, response,SearchDao.exportOrderByStatus(contrller));
@@ -66,7 +66,7 @@ public class ExportExcelServlet extends HttpServlet {
                 }
             }
         } else {
-            //ÅĞ¶ÏÊ±¼ä²»Îª¿ÕÇÒ×´Ì¬²»Îª¿Õ
+            //åˆ¤æ–­æ—¶é—´ä¸ä¸ºç©ºä¸”çŠ¶æ€ä¸ä¸ºç©º
             if (!contrller.equals("") && !contrller.equals("null")) {
                 try {
                     export(request, response,SearchDao.exportOrderByDateAndContrller(start, end, contrller));
@@ -74,7 +74,7 @@ public class ExportExcelServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             } else {
-                //ÅĞ¶ÏÊ±¼ä²»Îª¿Õ£¬×´Ì¬Îª¿Õ
+                //åˆ¤æ–­æ—¶é—´ä¸ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ºç©º
                 try {
                     export(request, response,SearchDao.exportOrderByDate(start, end));
                 } catch (Exception e) {
@@ -90,17 +90,17 @@ public class ExportExcelServlet extends HttpServlet {
     }
 
     public void export(HttpServletRequest request, HttpServletResponse response,List<Order> order) throws Exception {
-        //»ñÈ¡Êı¾İ
+        //è·å–æ•°æ®
         List<Order> list = order;
 
-        //excel±êÌâ
+        //excelæ ‡é¢˜
         String[] title = {"ID", "name", "status", "update_time", "comment"};
 
-        //excelÎÄ¼şÃû
-        String fileName = "¶©²ÍÍ³¼Æ±í" + System.currentTimeMillis() + ".xls";
+        //excelæ–‡ä»¶å
+        String fileName = "è®¢é¤ç»Ÿè®¡è¡¨" + System.currentTimeMillis() + ".xls";
 
-        //sheetÃû
-        String sheetName = "¶©²ÍÍ³¼Æ";
+        //sheetå
+        String sheetName = "è®¢é¤ç»Ÿè®¡";
 
         String[][] content=new String[list.size()][title.length];
         for (int i = 0; i < list.size(); i++) {
@@ -109,19 +109,19 @@ public class ExportExcelServlet extends HttpServlet {
             content[i][0] = String.valueOf(obj.getId());
             content[i][1] = obj.getName();
             if(obj.getStatus()==1){
-                content[i][2] = "¼Ó°àÒÑ¶©²Í";
+                content[i][2] = "åŠ ç­å·²è®¢é¤";
             }else if(obj.getStatus()==2){
-                content[i][2] = "¼Ó°àÎ´¶©²Í";
+                content[i][2] = "åŠ ç­æœªè®¢é¤";
             }
             //content[i][2] = String.valueOf(obj.getStatus());
             content[i][3] = obj.getUpdatetime();
             //content[i][4] = obj.get("comment").tostring();
         }
 
-//´´½¨HSSFWorkbook
+//åˆ›å»ºHSSFWorkbook
         HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
 
-//ÏìÓ¦µ½¿Í»§¶Ë
+//å“åº”åˆ°å®¢æˆ·ç«¯
         try {
             this.setResponseHeader(response, fileName);
             OutputStream os = response.getOutputStream();
@@ -133,7 +133,7 @@ public class ExportExcelServlet extends HttpServlet {
         }
     }
 
-    //·¢ËÍÏìÓ¦Á÷·½·¨
+    //å‘é€å“åº”æµæ–¹æ³•
     public void setResponseHeader(HttpServletResponse response, String fileName) {
         try {
             try {

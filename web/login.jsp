@@ -43,7 +43,7 @@
     var obj = DDLogin({
         id: "login_container",
         //本地环境
-        goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%dingoatbp9bmuz9zf8qiwi%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dSTATE%26redirect_uri%3dhttp%3a%2f%2f192.168.211.26%3a8080%2fjavawebservlet%2fServletRequst",
+        goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoatbp9bmuz9zf8qiwi%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dSTATE%26redirect_uri%3dhttp%3a%2f%2f192.168.211.26%3a8080%2fjavawebservlet%2fServletRequst",
         //线上环境
 //        goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoav8ulanmhofptrhio%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dSTATE%26redirect_uri%3dhttp%3a%2f%2fjsdingcai.drcuiyutao.com%2fjavawebservlet%2fServletRequst",
         style: "border:none;background-color:#FFFFFF;",

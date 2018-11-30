@@ -4,44 +4,44 @@ import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
 /**
- * ´´½¨Excel»ù´¡Àà
+ * åˆ›å»ºExcelåŸºç¡€ç±»
  *
- * @author ´ÔË¬
+ * @author ä¸›çˆ½
  * @create 2018-11-15 10:07
  **/
 public class ExcelUtil {
     public static HSSFWorkbook getHSSFWorkbook(String sheetName, String[] title, String[][] values, HSSFWorkbook wb) {
 
-        // µÚÒ»²½£¬´´½¨Ò»¸öHSSFWorkbook£¬¶ÔÓ¦Ò»¸öExcelÎÄ¼ş
+        // ç¬¬ä¸€æ­¥ï¼Œåˆ›å»ºä¸€ä¸ªHSSFWorkbookï¼Œå¯¹åº”ä¸€ä¸ªExcelæ–‡ä»¶
         if (wb == null) {
             wb = new HSSFWorkbook();
         }
 
-        // µÚ¶ş²½£¬ÔÚworkbookÖĞÌí¼ÓÒ»¸ösheet,¶ÔÓ¦ExcelÎÄ¼şÖĞµÄsheet
+        // ç¬¬äºŒæ­¥ï¼Œåœ¨workbookä¸­æ·»åŠ ä¸€ä¸ªsheet,å¯¹åº”Excelæ–‡ä»¶ä¸­çš„sheet
         HSSFSheet sheet = wb.createSheet(sheetName);
 
-        // µÚÈı²½£¬ÔÚsheetÖĞÌí¼Ó±íÍ·µÚ0ĞĞ,×¢ÒâÀÏ°æ±¾poi¶ÔExcelµÄĞĞÊıÁĞÊıÓĞÏŞÖÆ
+        // ç¬¬ä¸‰æ­¥ï¼Œåœ¨sheetä¸­æ·»åŠ è¡¨å¤´ç¬¬0è¡Œ,æ³¨æ„è€ç‰ˆæœ¬poiå¯¹Excelçš„è¡Œæ•°åˆ—æ•°æœ‰é™åˆ¶
         HSSFRow row = sheet.createRow(0);
 
-        // µÚËÄ²½£¬´´½¨µ¥Ôª¸ñ£¬²¢ÉèÖÃÖµ±íÍ· ÉèÖÃ±íÍ·¾ÓÖĞ
+        // ç¬¬å››æ­¥ï¼Œåˆ›å»ºå•å…ƒæ ¼ï¼Œå¹¶è®¾ç½®å€¼è¡¨å¤´ è®¾ç½®è¡¨å¤´å±…ä¸­
         HSSFCellStyle style = wb.createCellStyle();
-        style.setAlignment(HorizontalAlignment.CENTER); // ´´½¨Ò»¸ö¾ÓÖĞ¸ñÊ½
+        style.setAlignment(HorizontalAlignment.CENTER); // åˆ›å»ºä¸€ä¸ªå±…ä¸­æ ¼å¼
 
-        //ÉùÃ÷ÁĞ¶ÔÏó
+        //å£°æ˜åˆ—å¯¹è±¡
         HSSFCell cell = null;
 
-        //´´½¨±êÌâ
+        //åˆ›å»ºæ ‡é¢˜
         for (int i = 0; i < title.length; i++) {
             cell = row.createCell(i);
             cell.setCellValue(title[i]);
             cell.setCellStyle(style);
         }
 
-        //´´½¨ÄÚÈİ
+        //åˆ›å»ºå†…å®¹
         for (int i = 0; i < values.length; i++) {
             row = sheet.createRow(i + 1);
             for (int j = 0; j < values[i].length; j++) {
-                //½«ÄÚÈİ°´Ë³Ğò¸³¸ø¶ÔÓ¦µÄÁĞ¶ÔÏó
+                //å°†å†…å®¹æŒ‰é¡ºåºèµ‹ç»™å¯¹åº”çš„åˆ—å¯¹è±¡
                 row.createCell(j).setCellValue(values[i][j]);
             }
         }

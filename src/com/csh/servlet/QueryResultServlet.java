@@ -19,9 +19,9 @@ public class QueryResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String currentpageStr = request.getParameter("currentpage") == null ? "1" : request.getParameter("currentpage");
         int currentpage = Integer.parseInt(currentpageStr);
-        // Ã¿Ò³ÏÔÊ¾¶àÉÙÌõ
+// æ¯é¡µæ˜¾ç¤ºå¤šå°‘æ¡
         int maximum = 100;
-        // ¿ÉÒÔÏÔÊ¾¶àÉÙÒ³
+// å¯ä»¥æ˜¾ç¤ºå¤šå°‘é¡µ
         int viewperpage = 20;
         SearchDao searchDao=new SearchDao();
         try {

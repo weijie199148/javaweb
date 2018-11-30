@@ -5,12 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author ´ÔË¬
+ * @author ä¸›çˆ½
  * @create 2018-10-26 10:09
  **/
 public class Timestamp {
     /*
-    * ½«Ê±¼ä´Á×ª»»ÎªÊ±¼ä
+    * å°†æ—¶é—´æˆ³è½¬æ¢ä¸ºæ—¶é—´
     */
     public static String stampToDate(String s) {
         String res;
@@ -24,7 +24,7 @@ public class Timestamp {
 
 
         /*
-         * ½«Ê±¼ä×ª»»ÎªÊ±¼ä´Á
+         * å°†æ—¶é—´è½¬æ¢ä¸ºæ—¶é—´æˆ³
          */
 
     public static Long dateToStamp(String s) throws ParseException {

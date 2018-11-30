@@ -1,7 +1,7 @@
 package search;
 
 /**
- * @author ´ÔË¬
+ * @author ä¸›çˆ½
  * @create 2018-10-24 18:13
  **/
 
@@ -135,7 +135,7 @@ public class SearchDao {
             while (rs.next()) {
                 totalrecordnumber = rs.getLong("total");
             }
-           // System.out.println(totalrecordnumber);
+            // System.out.println(totalrecordnumber);
             Dao.close(rs, ps, conn);
             return totalrecordnumber;
         } catch (SQLException e) {
@@ -392,7 +392,7 @@ public class SearchDao {
         try {
             //HH:mm:ss:SSS
             //currentpage=currentpage-1;
-            //·ÖÒ³ÆğÊ¼µã
+            //åˆ†é¡µèµ·å§‹ç‚¹
             int maximumstart = maximum * (currentpage - 1);
             Long startstamp = Timestamp.dateToStamp(start + ":000");
             Long endstamp = Timestamp.dateToStamp(end + ":000");
@@ -664,30 +664,30 @@ public class SearchDao {
     public void updateuserstatusbyname(String username) throws SQLException {
         try {
             Connection conn = Dao.getConnection();
-            //UPDATE  order_user set status=1 Where name='´ÔË¬' and date_format(from_unixtime(update_time/1000),'%Y-%m-%d') = date_format(now(),'%Y-%m-%d')
+            //UPDATE  order_user set status=1 Where name='ä¸›çˆ½' and date_format(from_unixtime(update_time/1000),'%Y-%m-%d') = date_format(now(),'%Y-%m-%d')
             SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
-            //»ñÈ¡µ±Ç°Ê±¼ä
+            //è·å–å½“å‰æ—¶é—´
             String time = sd.format(new Date());
-            //Êä³öµ±Ç°Ê±¼ä
-            System.out.println("Êä³öµ±Ç°Ê±¼ä:" + time);
+            //è¾“å‡ºå½“å‰æ—¶é—´
+            System.out.println("è¾“å‡ºå½“å‰æ—¶é—´:" + time);
 
-            //Ê±¼ä×ª»»ÎªÊ±¼ä´Á
+            //æ—¶é—´è½¬æ¢ä¸ºæ—¶é—´æˆ³
             Date date = null;
             try {
                 date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").parse(time);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            //javaÖĞÊ±¼ä´ÁºÁÃë¼Æ/1000 »»ËãÎªÃë
+            //javaä¸­æ—¶é—´æˆ³æ¯«ç§’è®¡/1000 æ¢ç®—ä¸ºç§’
             long unixTimestamp = date.getTime();
 
-            //Êä³öÊ±¼ä´Á
-            System.out.println("Êä³öÊ±¼ä´Á:" + unixTimestamp);
+            //è¾“å‡ºæ—¶é—´æˆ³
+            System.out.println("è¾“å‡ºæ—¶é—´æˆ³:" + unixTimestamp);
 
             //long currenttime=System.currentTimeMillis();
             //String sql = "UPDATE  order_user set status=1 , update_time="+currenttime+" Where name=? ";
-            //INSERT into order_user(name,status,update_time) VALUES ('µñ¿Ì',1,11111);
+            //INSERT into order_user(name,status,update_time) VALUES ('é›•åˆ»',1,11111);
             String sql = "INSERT into  order_user(name,status,update_time) VALUES (?,?,?)";
 //            String sql = "INSERT INTO table1(id,user,password,age) VALUES (?,?,?,?)";
 
@@ -748,30 +748,30 @@ public class SearchDao {
         try {
 //            int s=Integer.parseInt(userstatus);
             Connection conn = Dao.getConnection();
-            //UPDATE  order_user set status=1 Where name='´ÔË¬' and date_format(from_unixtime(update_time/1000),'%Y-%m-%d') = date_format(now(),'%Y-%m-%d')
+            //UPDATE  order_user set status=1 Where name='ä¸›çˆ½' and date_format(from_unixtime(update_time/1000),'%Y-%m-%d') = date_format(now(),'%Y-%m-%d')
             SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
-            //»ñÈ¡µ±Ç°Ê±¼ä
+            //è·å–å½“å‰æ—¶é—´
             String time = sd.format(new Date());
-            //Êä³öµ±Ç°Ê±¼ä
-            System.out.println("Êä³öµ±Ç°Ê±¼ä:" + time);
+            //è¾“å‡ºå½“å‰æ—¶é—´
+            System.out.println("è¾“å‡ºå½“å‰æ—¶é—´:" + time);
 
-            //Ê±¼ä×ª»»ÎªÊ±¼ä´Á
+            //æ—¶é—´è½¬æ¢ä¸ºæ—¶é—´æˆ³
             Date date = null;
             try {
                 date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").parse(time);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            //javaÖĞÊ±¼ä´ÁºÁÃë¼Æ/1000 »»ËãÎªÃë
+            //javaä¸­æ—¶é—´æˆ³æ¯«ç§’è®¡/1000 æ¢ç®—ä¸ºç§’
             long unixTimestamp = date.getTime();
 
-            //Êä³öÊ±¼ä´Á
-            System.out.println("Êä³öÊ±¼ä´Á:" + unixTimestamp);
+            //è¾“å‡ºæ—¶é—´æˆ³
+            System.out.println("è¾“å‡ºæ—¶é—´æˆ³:" + unixTimestamp);
 
             //long currenttime=System.currentTimeMillis();
             //String sql = "UPDATE  order_user set status=1 , update_time="+currenttime+" Where name=? ";
-            //INSERT into order_user(name,status,update_time) VALUES ('µñ¿Ì',1,11111);
+            //INSERT into order_user(name,status,update_time) VALUES ('é›•åˆ»',1,11111);
             String sql = "INSERT into  order_user(name,status,update_time) VALUES (?,?,?)";
 //            String sql = "INSERT INTO table1(id,user,password,age) VALUES (?,?,?,?)";
 

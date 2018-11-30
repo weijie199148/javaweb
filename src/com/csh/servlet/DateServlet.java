@@ -23,17 +23,10 @@ public class DateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String title = "显示当前的日期和时间";
+        String title = "鏄剧ず褰撳墠鐨勬棩鏈熷拰鏃堕棿";
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-
-//        String res;
-//        Date date = new Date();
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        Date date = simpleDateFormat.parse(date);
-//        long ts = date.getTime();
-//        res = String.valueOf(ts);
         String docType = "<!DOCTYPE html> \n";
         out.println(docType +
                 "<html>\n" +
@@ -43,7 +36,6 @@ public class DateServlet extends HttpServlet {
                 "<h2 align=\"center\">" + date.getTime() + "</h2>\n" +
                 "</body></html>");
     }
-
 
 }
 

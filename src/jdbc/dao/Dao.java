@@ -3,16 +3,16 @@ package jdbc.dao;
 import java.sql.*;
 
 /**
- * @author 丛爽
+ * @author csh
  * @create 2018-10-23 21:08
  **/
 public class Dao {
     public static Connection getConnection() throws SQLException {
-        //线上
+        //绾夸笂
         String url = "jdbc:mysql://192.168.0.8:3306/orderfood?useUnicode=true&characterEncoding=utf8";
         String username = "congshuang";
         String password = "congshuang147";
-        //本地
+        //鏈湴
 //        String url = "jdbc:mysql://localhost:3306/orderfood?characterEncoding=UTF-8&useSSL=false";
 //        String username = "root";
 //        String password = "root";

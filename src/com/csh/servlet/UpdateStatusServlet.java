@@ -18,19 +18,22 @@ import java.util.Map;
 @WebServlet(name = "UpdateStatusServlet")
 public class UpdateStatusServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");// å¤„ç†postè¯·æ±‚ä¹±ç é—®é¢˜
         //String username=request.getParameter("username");
-        //»ñÈ¡ÇëÇóurlÖĞµÄÓÃ»§Ãû×Ö£¬²¢½øĞĞ×ªÂë
+        //è·å–è¯·æ±‚urlä¸­çš„ç”¨æˆ·åå­—
         String username="";
         String status="";
         String comment="";
         Map<String, String[]> querymap = request.getParameterMap();
         for (String key:querymap.keySet()){
             if (key.equals("username")){
-                //²»ÓÃ¼ÓgetBytes("iso")
-                username=new String(querymap.get(key)[0].getBytes(),"UTF-8");
+                //ä¸ç”¨åŠ getBytes("iso")
+                username=querymap.get(key)[0];
+//                username=new String(querymap.get(key)[0].getBytes(),"UTF-8");
                 System.out.println(username);
             }else if (key.equals("status")){
-                status=new String(querymap.get(key)[0].getBytes(),"UTF-8");
+//                status=new String(querymap.get(key)[0].getBytes(),"UTF-8");
+                status=querymap.get(key)[0];
                 System.out.println(status);
             }else if(key.equals("comment")){
 
@@ -40,12 +43,12 @@ public class UpdateStatusServlet extends HttpServlet {
         String msg="";
         try {
             List list=searchDao.gettodayuserbyname(username);
-            System.out.println("ÁĞ±íµÄ³¤¶ÈÎª£º"+list.size());
+            System.out.println("åˆ—è¡¨çš„é•¿åº¦ä¸ºï¼š"+list.size());
             if(list.size()==0){
                 searchDao.updateuserstatusbyname(username,status);
                 request.getRequestDispatcher("/QueryResultServlet").forward(request,response);
             }else{
-                msg="Äú½ñÌìÒÑ¾­¶©¹ı²ÍÁË~";
+                msg="æ‚¨ä»Šå¤©å·²ç»è®¢è¿‡é¤äº†~";
                 System.out.println(msg);
                 request.setAttribute("msg",msg);
                 request.getRequestDispatcher("/QueryResultServlet").forward(request,response);
