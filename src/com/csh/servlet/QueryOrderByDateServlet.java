@@ -18,6 +18,11 @@ import java.util.Map;
 @WebServlet(name = "QueryOrderByDateServlet")
 public class QueryOrderByDateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //è·å–å®Œæ•´çš„è¯·æ±‚url
+//        String uri = request.getScheme() + "://"
+//                + request.getServerName() + ":" + request.getServerPort()
+//                + request.getRequestURI()
+//                + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
         request.setCharacterEncoding("utf-8");
         String start = "";
         String end = "";
@@ -25,18 +30,23 @@ public class QueryOrderByDateServlet extends HttpServlet {
         String uname = "";
         String uri = request.getRequestURL() + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
 
+
+        // å½“å‰æ˜¯ç¬¬å‡ é¡µ
+//        String currentpageStr ="1";
+//        int currentpage = Integer.parseInt(currentpageStr);
+        // å½“å‰æ˜¯ç¬¬å‡ é¡µ
         String currentpageStr = request.getParameter("currentpage") == null ? "1" : request.getParameter("currentpage");
         int currentpage = Integer.parseInt(currentpageStr);
-        // Ã¿Ò³ÏÔÊ¾¶àÉÙÌõ
+        // æ¯é¡µæ˜¾ç¤ºå¤šå°‘æ¡
         int maximum = 100;
-        // ¿ÉÒÔÏÔÊ¾¶àÉÙÒ³
+        // å¯ä»¥æ˜¾ç¤ºå¤šå°‘é¡µ
         int viewperpage = 10;
 
-        //Èç¹ûÎª¿Õ£¬http://192.168.211.26:8080/UpdateStatusServlet?start=&end=&contrller=
-        //²»Îª¿Õ£¬http://192.168.211.26:8080/QueryOrderByDateServlet?start=2018-11-01&end=2018-11-07&contrller=0
+        //å¦‚æœä¸ºç©ºï¼Œhttp://192.168.211.26:8080/UpdateStatusServlet?start=&end=&contrller=
+        //ä¸ä¸ºç©ºï¼Œhttp://192.168.211.26:8080/QueryOrderByDateServlet?start=2018-11-01&end=2018-11-07&contrller=0
         System.out.println(uri);
         Map<String, String[]> querymap = request.getParameterMap();
-        //ÅĞ¶Ï²»Îª¿Õ
+        //åˆ¤æ–­ä¸ä¸ºç©º
         for (String key : querymap.keySet()) {
             String t = querymap.get(key)[0];
             if (key.equals("start")) {
@@ -55,15 +65,15 @@ public class QueryOrderByDateServlet extends HttpServlet {
             } else if (key.equals("uname")) {
                 if (!t.equals("")) {
                     uname = querymap.get(key)[0];
-                    System.out.println("»ñÈ¡µÄ¿Ø¼şÃû×Ö£º" + uname);
+                    System.out.println("è·å–çš„æ§ä»¶åå­—ï¼š" + uname);
                 }
             }
         }
-        //ÅĞ¶ÏÊ±¼äÎª¿Õ
+        //åˆ¤æ–­æ—¶é—´ä¸ºç©º
         if (start.equals("") || end.equals("") || start.equals("null") || end.equals("null")) {
-            //ÅĞ¶Ï×´Ì¬Îª¿Õ
+            //åˆ¤æ–­çŠ¶æ€ä¸ºç©º
             if (contrller.equals("") || contrller.equals("null")) {
-                //ÅĞ¶ÏÊ±¼äºÍ×´Ì¬¶¼Îª¿Õ£¬Ãû×ÖÎª¿Õ
+                //åˆ¤æ–­æ—¶é—´å’ŒçŠ¶æ€éƒ½ä¸ºç©ºï¼Œåå­—ä¸ºç©º
                 if (uname.equals("") || uname.equals("null")) {
                     try {
                         long totalrecordnumber = SearchDao.getAllCount();
@@ -76,7 +86,7 @@ public class QueryOrderByDateServlet extends HttpServlet {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                } else {//ÅĞ¶ÏÊ±¼äºÍ×´Ì¬¶¼Îª¿Õ£¬ĞÕÃû²»Îª¿Õ
+                } else {//åˆ¤æ–­æ—¶é—´å’ŒçŠ¶æ€éƒ½ä¸ºç©ºï¼Œå§“åä¸ä¸ºç©º
                     try {
                         long totalrecordnumber = SearchDao.getOrderCountByName(uname);
                         PageView pageView = new PageView(totalrecordnumber, currentpage, maximum, viewperpage);
@@ -89,7 +99,7 @@ public class QueryOrderByDateServlet extends HttpServlet {
                         e.printStackTrace();
                     }
                 }
-            } else if (uname.equals("") || uname.equals("null")) {//ÅĞ¶ÏÊ±¼äÎª¿Õ£¬×´Ì¬²»Îª¿Õ,Ãû×ÖÎª¿Õ
+            } else if (uname.equals("") || uname.equals("null")) {//åˆ¤æ–­æ—¶é—´ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ä¸ºç©º,åå­—ä¸ºç©º
                 try {//getOrderCountByStatus
                     long totalrecordnumber = SearchDao.getOrderCountByStatus(contrller);
                     PageView pageView = new PageView(totalrecordnumber, currentpage, maximum, viewperpage);
@@ -101,7 +111,7 @@ public class QueryOrderByDateServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            } else {//ÅĞ¶ÏÊ±¼äÎª¿Õ£¬×´Ì¬²»Îª¿Õ,Ãû×Ö²»Îª¿Õ
+            } else {//åˆ¤æ–­æ—¶é—´ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ä¸ºç©º,åå­—ä¸ä¸ºç©º
                 try {//getOrderCountByStatus
                     long totalrecordnumber = SearchDao.getOrderCountByStatusAndName(contrller, uname);
                     PageView pageView = new PageView(totalrecordnumber, currentpage, maximum, viewperpage);
@@ -114,11 +124,11 @@ public class QueryOrderByDateServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             }
-            //Ê±¼ä²»Îª¿Õ
+            //æ—¶é—´ä¸ä¸ºç©º
         } else {
-            //Ê±¼ä²»Îª¿Õ£¬×´Ì¬Îª¿Õ
+            //æ—¶é—´ä¸ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ºç©º
             if (contrller.equals("") || contrller.equals("null")) {
-                //Ê±¼ä²»Îª¿Õ£¬×´Ì¬Îª¿Õ£¬Ãû×ÖÎª¿Õ
+                //æ—¶é—´ä¸ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ºç©ºï¼Œåå­—ä¸ºç©º
                 if (uname.equals("") || uname.equals("null")) {
                     try {
                         long totalrecordnumber = SearchDao.getOrderCountByDate(start, end);
@@ -133,7 +143,7 @@ public class QueryOrderByDateServlet extends HttpServlet {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                } else {//Ê±¼ä²»Îª¿Õ£¬×´Ì¬Îª¿Õ£¬Ãû×Ö²»Îª¿Õ
+                } else {//æ—¶é—´ä¸ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ºç©ºï¼Œåå­—ä¸ä¸ºç©º
                     try {
                         long totalrecordnumber = SearchDao.getOrderCountByNameContrller(uname);
                         PageView pageView = new PageView(totalrecordnumber, currentpage, maximum, viewperpage);
@@ -146,7 +156,7 @@ public class QueryOrderByDateServlet extends HttpServlet {
                         e.printStackTrace();
                     }
                 }
-            } else if (uname.equals("") || uname.equals("null")) {//ÅĞ¶ÏÊ±¼ä²»Îª¿Õ£¬×´Ì¬²»Îª¿Õ,Ãû×ÖÎª¿Õ
+            } else if (uname.equals("") || uname.equals("null")) {//åˆ¤æ–­æ—¶é—´ä¸ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ä¸ºç©º,åå­—ä¸ºç©º
                 try {
                     long totalrecordnumber = SearchDao.getOrderCountByStatusDate(start, end, contrller);
                     PageView pageView = new PageView(totalrecordnumber, currentpage, maximum, viewperpage);
@@ -158,7 +168,7 @@ public class QueryOrderByDateServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            } else {//ÅĞ¶ÏÊ±¼ä²»Îª¿Õ£¬×´Ì¬²»Îª¿Õ,Ãû×Ö²»Îª¿Õ
+            } else {//åˆ¤æ–­æ—¶é—´ä¸ä¸ºç©ºï¼ŒçŠ¶æ€ä¸ä¸ºç©º,åå­—ä¸ä¸ºç©º
                 try {
                     long totalrecordnumber = SearchDao.getOrderCountByDateContrllerName(start, end, contrller, uname);
                     PageView pageView = new PageView(totalrecordnumber, currentpage, maximum, viewperpage);
