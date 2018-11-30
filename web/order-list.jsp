@@ -75,7 +75,8 @@
     </div>
     <xblock>
         <%--<button class="layui-btn layui-btn-danger" onclick=""><i class="layui-icon"></i>批量删除</button>--%>
-        <button class="layui-btn layui-btn-danger" onclick="exporExcel()">导出Excel</button>  <span style="color: red;font-size:15px">注意：导出不加姓名的筛选</span>
+        <button class="layui-btn layui-btn-danger" onclick="exporExcel()">导出Excel</button>
+        <button class="layui-btn layui-btn-primary layui-btn-xs" onclick="help()"><i class="iconfont">&#xe6a3;</i></button>
         <%--<button class="layui-btn" onclick="x_admin_show('添加用户','./order-add.html')"><i class="layui-icon"></i>添加</button>--%>
         <span class="x-right" style="line-height:40px">共有数据：${pageView.totalrecordnumber} 条</span>
     </xblock>
@@ -158,6 +159,28 @@
 
 </div>
 <script>
+    function help() {
+//示范一个公告层
+        layer.open({
+            type: 1
+            ,title: false //不显示标题栏
+            ,closeBtn: false
+            ,area: '300px;'
+            ,shade: 0.8
+            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            ,btn: ['我知道了']
+            ,btnAlign: 'c'
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: '<div style="padding: 55px; line-height: 15px; background-color: #393D49; color: #fff; font-weight: 300;">时间有限，导出现在没有加上姓名的筛选条件，如后续需要再加此功能！目前只加了时间和状态的筛选功能！ ^_^</div>'
+//            ,success: function(layero){
+//                var btn = layero.find('.layui-layer-btn');
+//                btn.find('.layui-layer-btn0').attr({
+//                    href: 'http://www.layui.com/'
+//                    ,target: '_blank'
+//                });
+//            }
+        });
+    }
     function topage(currentpage) {
         var start = '<%=request.getAttribute("start")%>';
         var end = '<%=request.getAttribute("end")%>';
@@ -243,7 +266,7 @@
         var startdate = document.getElementById("start").value;
         var startend = document.getElementById("end").value;
 
-        window.location.href = "/javawebservlet/ExportExcelServlet?startdate="+startdate+"&"+"startend="+startend+"&"+"contrller="+contrller;
+        window.location.href = "/javawebservlet/ExportExcelServlet?startdate=" + startdate + "&" + "startend=" + startend + "&" + "contrller=" + contrller;
     }
 </script>
 
