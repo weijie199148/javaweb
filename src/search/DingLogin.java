@@ -13,7 +13,7 @@ import org.apache.http.util.EntityUtils;
 import java.io.BufferedReader;
 
 /**
- * @author ´ÔË¬
+ * @author ä¸›çˆ½
  * @create 2018-11-02 12:506
  **/
 public class DingLogin {
@@ -21,9 +21,9 @@ public class DingLogin {
         //System.out.println(code);
 
         try{
-            //»ñÈ¡accesstoken
+            //è·å–accesstoken
             String accessToken = getAccesstoken();
-            //»ñÈ¡ÓÃ»§ÊÚÈ¨µÄ³Ö¾ÃÊÚÈ¨Âë
+            //è·å–ç”¨æˆ·æˆæƒçš„æŒä¹…æˆæƒç 
             JSONObject json = getPersistentCode(accessToken, code);
             String openId = "";
             String persistentCode = "";
@@ -31,14 +31,14 @@ public class DingLogin {
                 openId = json.getString("openid");
                 persistentCode = json.getString("persistent_code");
             }
-            //»ñÈ¡ÓÃ»§ÊÚÈ¨µÄSNS_TOKEN
+            //è·å–ç”¨æˆ·æˆæƒçš„SNS_TOKEN
             String snsToken = getSnsToken(accessToken, openId, persistentCode);
-            //»ñÈ¡ÓÃ»§unionid
+            //è·å–ç”¨æˆ·unionid
             String nick = getUnionId(snsToken);
-            //¸ù¾İunionid»ñÈ¡ÓÃ»§userId
+            //æ ¹æ®unionidè·å–ç”¨æˆ·userId
             //String appAccessToken = getAppAccesstoken();
             //String nick = getUserId(accessToken, unionId);
-            //»ñÈ¡ÓÃ»§ÏêÏ¸Êı¾İ
+            //è·å–ç”¨æˆ·è¯¦ç»†æ•°æ®
             //com.alibaba.fastjson.JSONObject userData = getUserData(appAccessToken, userId);
             System.out.println(nick);
             return nick;
@@ -48,7 +48,11 @@ public class DingLogin {
         return null;
     }
     public String getAccesstoken() {
-        String url = "https://oapi.dingtalk.com/sns/gettoken?appid=dingoav8ulanmhofptrhio&appsecret=r2fbezOVDZBdRxdW5mylJpz5CnWb1SZL40lFjgoi4e3K-TrMDbuTsWEwV7Rz879w";
+        //çº¿ä¸Šç¯å¢ƒ
+//        String url = "https://oapi.dingtalk.com/sns/gettoken?appid=dingoav8ulanmhofptrhio&appsecret=r2fbezOVDZBdRxdW5mylJpz5CnWb1SZL40lFjgoi4e3K-TrMDbuTsWEwV7Rz879w";
+        //æœ¬åœ°ç¯å¢ƒ
+        String url = "https://oapi.dingtalk.com/sns/gettoken?appid=dingoatbp9bmuz9zf8qiwi&appsecret=1-f5bwSY-egCmidmRFpNRW4JRLt7Gl6wsDkT1GKB1hMvsv5WOsqw47_GKMzzoV8W";
+
         JSONObject json = ossHttpGetUtil(url);
         if(null!=json){
             if (Integer.parseInt(json.get("errcode").toString()) == 0) {
@@ -151,12 +155,12 @@ public class DingLogin {
         }
         BufferedReader bufferedReader = null;
         StringBuilder entityStringBuilder = new StringBuilder();
-        //µÃµ½httpResponseµÄ×´Ì¬ÏìÓ¦Âë
+        //å¾—åˆ°httpResponseçš„çŠ¶æ€å“åº”ç 
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         JSONObject jsonObject = null;
         String access_token = "";
         if (statusCode == HttpStatus.SC_OK) {
-            //µÃµ½httpResponseµÄÊµÌåÊı¾İ
+            //å¾—åˆ°httpResponseçš„å®ä½“æ•°æ®
             HttpEntity httpEntity = httpResponse.getEntity();
             if (httpEntity != null) {
                 try {
@@ -185,10 +189,10 @@ public class DingLogin {
 
         }
         StringBuilder entityStringBuilder = new StringBuilder();
-        //µÃµ½httpResponseµÄ×´Ì¬ÏìÓ¦Âë
+        //å¾—åˆ°httpResponseçš„çŠ¶æ€å“åº”ç 
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         if (statusCode == HttpStatus.SC_OK) {
-            //µÃµ½httpResponseµÄÊµÌåÊı¾İ
+            //å¾—åˆ°httpResponseçš„å®ä½“æ•°æ®
             HttpEntity httpEntity2 = httpResponse.getEntity();
             JSONObject jsonObject = null;
             if (httpEntity2 != null) {
