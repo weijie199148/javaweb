@@ -43,9 +43,9 @@
     var obj = DDLogin({
         id: "login_container",
         //本地环境
-        goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoatbp9bmuz9zf8qiwi%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dSTATE%26redirect_uri%3dhttp%3a%2f%2f192.168.211.26%3a8080%2fjavawebservlet%2fServletRequst",
+//        goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoatbp9bmuz9zf8qiwi%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dSTATE%26redirect_uri%3dhttp%3a%2f%2f192.168.211.26%3a8080%2fjavawebservlet%2fServletRequst",
         //线上环境
-//        goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoav8ulanmhofptrhio%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dSTATE%26redirect_uri%3dhttp%3a%2f%2fjsdingcai.drcuiyutao.com%2fjavawebservlet%2fServletRequst",
+        goto: "https%3a%2f%2foapi.dingtalk.com%2fconnect%2foauth2%2fsns_authorize%3fappid%3ddingoav8ulanmhofptrhio%26response_type%3dcode%26scope%3dsnsapi_login%26state%3dSTATE%26redirect_uri%3dhttp%3a%2f%2fjsdingcai.drcuiyutao.com%2fjavawebservlet%2fServletRequst",
         style: "border:none;background-color:#FFFFFF;",
         width: "365",
         height: "400"
@@ -58,9 +58,9 @@
             // DingLogin.goDingLogin(loginTmpCode);
             console.log("loginTmpCode", loginTmpCode);
             //本地地址调试
-            window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=dingoatbp9bmuz9zf8qiwi&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=http://192.168.211.26:8080/javawebservlet/ServletRequst&loginTmpCode=" + loginTmpCode
+//            window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=dingoatbp9bmuz9zf8qiwi&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=http://192.168.211.26:8080/javawebservlet/ServletRequst&loginTmpCode=" + loginTmpCode
             //线上地址
-//            window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=dingoav8ulanmhofptrhio&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=http://jsdingcai.drcuiyutao.com/javawebservlet/ServletRequst&loginTmpCode=" + loginTmpCode
+            window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=dingoav8ulanmhofptrhio&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=http://jsdingcai.drcuiyutao.com/javawebservlet/ServletRequst&loginTmpCode=" + loginTmpCode
             //request.post("http://192.168.211.26:8080/ServletRequst?loginTmpCode="+loginTmpCode);
             /*DingLogin dl=new DingLogin();
              dl.goDingLogin(loginTmpCode);*/

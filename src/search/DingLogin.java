@@ -49,9 +49,9 @@ public class DingLogin {
     }
     public String getAccesstoken() {
         //线上环境
-//        String url = "https://oapi.dingtalk.com/sns/gettoken?appid=dingoav8ulanmhofptrhio&appsecret=r2fbezOVDZBdRxdW5mylJpz5CnWb1SZL40lFjgoi4e3K-TrMDbuTsWEwV7Rz879w";
+        String url = "https://oapi.dingtalk.com/sns/gettoken?appid=dingoav8ulanmhofptrhio&appsecret=r2fbezOVDZBdRxdW5mylJpz5CnWb1SZL40lFjgoi4e3K-TrMDbuTsWEwV7Rz879w";
         //本地环境
-        String url = "https://oapi.dingtalk.com/sns/gettoken?appid=dingoatbp9bmuz9zf8qiwi&appsecret=1-f5bwSY-egCmidmRFpNRW4JRLt7Gl6wsDkT1GKB1hMvsv5WOsqw47_GKMzzoV8W";
+//        String url = "https://oapi.dingtalk.com/sns/gettoken?appid=dingoatbp9bmuz9zf8qiwi&appsecret=1-f5bwSY-egCmidmRFpNRW4JRLt7Gl6wsDkT1GKB1hMvsv5WOsqw47_GKMzzoV8W";
 
         JSONObject json = ossHttpGetUtil(url);
         if(null!=json){

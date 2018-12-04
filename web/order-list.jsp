@@ -171,7 +171,7 @@
             ,btn: ['我知道了']
             ,btnAlign: 'c'
             ,moveType: 1 //拖拽模式，0或者1
-            ,content: '<div style="padding: 55px; line-height: 15px; background-color: #393D49; color: #fff; font-weight: 300;">时间有限，导出现在没有加上姓名的筛选条件，如后续需要再加此功能！目前只加了时间和状态的筛选功能！ ^_^</div>'
+            ,content: '<div style="padding: 55px; line-height: 15px; background-color: #393D49; color: #fff; font-weight: 300;">一、时间有限，导出现在没有加上姓名的筛选条件！<br><br>二、导出只需要在上面筛选条件中输入数据，然后点击导出按钮即可完成导出功能！<br><br>三、不填写筛选条件，默认导出全部数据！ ^_^</div>'
 //            ,success: function(layero){
 //                var btn = layero.find('.layui-layer-btn');
 //                btn.find('.layui-layer-btn0').attr({

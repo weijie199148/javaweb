@@ -9,14 +9,14 @@ import java.sql.*;
 public class Dao {
     public static Connection getConnection() throws SQLException {
         //线上
-//        String url = "jdbc:mysql://192.168.0.8:3306/orderfood?useUnicode=true&characterEncoding=utf8";
-//        String username = "congshuang";
-//        String password = "congshuang147";
+        String url = "jdbc:mysql://192.168.0.8:3306/orderfood?useUnicode=true&characterEncoding=utf8";
+        String username = "congshuang";
+        String password = "congshuang147";
         //本地
-//        String url = "jdbc:mysql://localhost:3306/orderfood?characterEncoding=UTF-8&useSSL=false";
-        String url = "jdbc:mysql://localhost:3306/orderfood?useUnicode=true&characterEncoding=utf8";
-        String username = "root";
-        String password = "root";
+//        String url = "jdbc:mysql://localhost:3306/orderfood?useUnicode=true&characterEncoding=utf8";
+//        String username = "root";
+//        String password = "root";
+
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");

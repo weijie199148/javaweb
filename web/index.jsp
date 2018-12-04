@@ -18,7 +18,7 @@
     <script type="text/javascript" src="./js/xadmin.js"></script>
     <script>var username = '<%=session.getAttribute("username")%>'</script>
 </head>
-<body onload="deleteorderlist()">
+<body >
     <!-- 顶部开始 -->
     <div class="container">
         <div class="logo"><a href="/javawebservlet/index.jsp">订餐后台</a></div>
