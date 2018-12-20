@@ -145,11 +145,12 @@ public class QueryOrderByDateServlet extends HttpServlet {
                     }
                 } else {//时间不为空，状态为空，名字不为空
                     try {
-                        long totalrecordnumber = SearchDao.getOrderCountByNameContrller(uname);
+                        long totalrecordnumber = SearchDao.getOrderCountByDateName(start, end, uname);
                         PageView pageView = new PageView(totalrecordnumber, currentpage, maximum, viewperpage);
-                        request.setAttribute("QueryResult", SearchDao.getOrderByNameContrller(uname,currentpage, maximum));
+                        request.setAttribute("QueryResult", SearchDao.getOrderByDateName(start, end, uname, currentpage, maximum));
                         request.setAttribute("pageView", pageView);
-                        request.setAttribute("contrller", contrller);
+                        request.setAttribute("start", start);
+                        request.setAttribute("end", end);
                         request.setAttribute("uname", uname);
                         request.getRequestDispatcher("/order-list.jsp").forward(request, response);
                     } catch (SQLException e) {
