@@ -57,6 +57,38 @@ public class SearchDao {
         return Integer.parseInt(null);
     }
 
+    public static long getOrderCountByDateName(String start, String end, String uname) throws SQLException {
+        //int id = -1;
+        try {
+            //HH:mm:ss:SSS
+            Long startstamp = Timestamp.dateToStamp(start + ":000");
+            Long endstamp = Timestamp.dateToStamp(end + ":000");
+            Connection conn = Dao.getConnection();
+            PreparedStatement ps = (PreparedStatement) conn
+                    .prepareStatement("select COUNT(*) as total from order_user WHERE update_time BETWEEN ? AND ? and name=?");
+            ps.setLong(1, startstamp);
+            ps.setLong(2, endstamp);
+            ps.setString(3, uname);
+            // ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            long totalrecordnumber = 0;
+            while (rs.next()) {
+                totalrecordnumber = rs.getLong("total");
+                //totalrecordnumber++;
+            }
+           // System.out.println(totalrecordnumber);
+            Dao.close(rs, ps, conn);
+            return totalrecordnumber;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Integer.parseInt(null);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return Integer.parseInt(null);
+    }
+
+
     public static List<Order> getOrderByStatusDate(String start, String end, String contrller, int currentpage, int maximum) throws SQLException {
         try {
             Long startstamp = Timestamp.dateToStamp(start + ":000");
@@ -92,6 +124,41 @@ public class SearchDao {
         return null;
     }
 
+
+    public static List<Order> getOrderByDateName(String start, String end, String uname, int currentpage, int maximum) throws SQLException {
+        try {
+            Long startstamp = Timestamp.dateToStamp(start + ":000");
+            Long endstamp = Timestamp.dateToStamp(end + ":000");
+            int maximumstart = maximum * (currentpage - 1);
+            Connection conn = Dao.getConnection();
+            PreparedStatement ps = (PreparedStatement) conn
+                    .prepareStatement("select * from order_user WHERE update_time BETWEEN ? AND ? and name=? GROUP BY id DESC limit " + maximumstart + "," + maximum);
+//            ps.setString(1, uname);
+            ps.setLong(1, startstamp);
+            ps.setLong(2, endstamp);
+            ps.setString(3, uname);
+            // ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            List<Order> orderlist = new ArrayList();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int status = rs.getInt("status");
+                long updatetime = rs.getLong("update_time");
+                String updatetimes = String.valueOf(updatetime);
+                Order order = new Order(id, name, status, Timestamp.stampToDate(updatetimes));
+                orderlist.add(order);
+            }
+            Dao.close(rs, ps, conn);
+            return orderlist;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static List<Order> getOrderByNameContrller(String uname, int currentpage, int maximum) throws SQLException {
         try {
@@ -460,6 +527,9 @@ public class SearchDao {
         }
         return null;
     }
+
+
+
 
     public static long getOrderCountByDate(String start, String end) throws SQLException {
         //int id = -1;

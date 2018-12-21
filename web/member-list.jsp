@@ -3,6 +3,7 @@
 <%--<%@ page import="search.SearchDao.*" language="java" %>--%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
+<%--<%@ page import="org.apache.log4j.Logger" %>--%>
 <html>
 
 <head>
@@ -224,148 +225,87 @@
     }
 
     function updateorder(username, status, starthour, endhour) {
-        var xhr = null;
-//        var starthour=0;
-//        var endhour=0;
-        if (window.XMLHttpRequest) {
-            xhr = new window.XMLHttpRequest();
-        } else { // ie
-            xhr = new ActiveObject("Microsoft")
-        }
-        // 通过get的方式请求当前文件
-        xhr.open("get", "/javawebservlet/index.jsp");
-        xhr.send(null);
-        // 监听请求状态变化
-        xhr.onreadystatechange = function () {
-            var time = null;
-            if (xhr.readyState === 2) {
-                // 获取响应头里的时间戳
-                time = xhr.getResponseHeader("Date");
-                console.log(xhr.getAllResponseHeaders())
-                var date = new Date(time);
+        layer.confirm('确认要订餐吗？', function () {
+            var xhr = null;
+            if (window.XMLHttpRequest) {
+                xhr = new window.XMLHttpRequest();
+            } else { // ie
+                xhr = new ActiveObject("Microsoft")
+            }
+            // 通过get的方式请求当前文件
+            xhr.open("get", "/javawebservlet/index.jsp");
+            xhr.send(null);
+            // 监听请求状态变化
+            xhr.onreadystatechange = function () {
+                var time = null;
+                if (xhr.readyState === 2) {
+                    // 获取响应头里的时间戳
+                    time = xhr.getResponseHeader("Date");
+                    console.log(xhr.getAllResponseHeaders());
+                    var date = new Date(time);
+                    console.log("转换后的中国时间为： " + date)
 //                    document.getElementById("time").innerHTML = "服务器时间是：" + curDate.getFullYear() + "-" + (curDate.getMonth() + 1) + "-" + curDate.getDate() + " " + curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
-                //1. 创建Date对象
+                    //1. 创建Date对象
 //        var date = new Date();
-                //5. 获得当前小时
-                var hour = date.getHours();
-                //6. 获得当前分钟
-                var min = date.getMinutes();
-                //7. 获得当前秒
-                var sec = date.getSeconds();
+                    //5. 获得当前小时
+                    var hour = date.getHours();
+                    //6. 获得当前分钟
+                    var min = date.getMinutes();
+                    //7. 获得当前秒
+                    var sec = date.getSeconds();
 //                alert(hour + ":" + min + ":" + sec);
-                var curr = hour * 60 * 60 + min * 60 + sec;
-                var startime = starthour * 60 * 60 + 30 * 60;
-                var endtime = endhour * 60 * 60 + 15 * 60;
-                var startimetext = "还没有到订餐时间！";
-                var endtimetext = "吃饭不积极，订餐已经结束了！";
-                if (username.length == 0) {
-                    layer.msg('请重新登录！', {icon: 1, time: 3000});
-                    //重定向，打开新页面同时把老页面关闭
-                    window.top.location.href = "/javawebservlet/login.jsp"
-                } else {
-                    if (curr < startime) {
-                        //alert("还没有开始");
-                        layer.open({
-                            type: 1
-                            , offset: 'auto'
-                            , id: 'layerDemo' + 1 //防止重复弹出
-                            , content: '<div style="padding: 20px 100px;">' + startimetext + '</div>'
-                            , btn: '关闭全部'
-                            , btnAlign: 'c' //按钮居中
-                            , shade: 0 //不显示遮罩
-                            , yes: function () {
-                                layer.closeAll();
-                            }
-                        });
-                    } else if (curr > endtime) {
+                    var curr = hour * 60 * 60 + min * 60 + sec;
+                    var startime = starthour * 60 * 60 + 25 * 60;
+                    var endtime = endhour * 60 * 60 + 11 * 60;
+                    var startimetext = "还没有到订餐时间！";
+                    var endtimetext = "吃饭不积极，订餐已经结束了！";
+                    if (username.length == 0) {
+                        layer.msg('请重新登录！', {icon: 1, time: 3000});
+                        //重定向，打开新页面同时把老页面关闭
+                        window.top.location.href = "/javawebservlet/login.jsp"
+                    } else {
+                        if (curr < startime) {
+                            //alert("还没有开始");
+                            layer.open({
+                                type: 1
+                                , offset: 'auto'
+                                , id: 'layerDemo' + 1 //防止重复弹出
+                                , content: '<div style="padding: 20px 100px;">' + startimetext + '</div>'
+                                , btn: '关闭全部'
+                                , btnAlign: 'c' //按钮居中
+                                , shade: 0 //不显示遮罩
+                                , yes: function () {
+                                    layer.closeAll();
+                                }
+                            });
+                        } else if (curr > endtime) {
 //            alert("已经结束");
-                        layer.open({
-                            type: 1
-                            , offset: 'auto'
-                            , id: 'layerDemo' + 1 //防止重复弹出
-                            , content: '<div style="padding: 20px 100px;">' + endtimetext + '</div>'
-                            , btn: '关闭全部'
-                            , btnAlign: 'c' //按钮居中
-                            , shade: 0 //不显示遮罩
-                            , yes: function () {
-                                layer.closeAll();
-                            }
-                        });
-                    } else if (curr >= startime && curr <= endtime) {
-                        layer.msg('订餐成功！', {icon: 1, time: 3000});
-                        window.location.href = "/javawebservlet/UpdateStatusServlet?username=" + username + "&status=" + status;
+                            layer.open({
+                                type: 1
+                                , offset: 'auto'
+                                , id: 'layerDemo' + 1 //防止重复弹出
+                                , content: '<div style="padding: 20px 100px;">' + endtimetext + '</div>'
+                                , btn: '关闭全部'
+                                , btnAlign: 'c' //按钮居中
+                                , shade: 0 //不显示遮罩
+                                , yes: function () {
+                                    layer.closeAll();
+                                }
+                            });
+                        } else if (curr >= startime && curr <= endtime) {
+                            layer.msg('订餐成功！', {icon: 1, time: 3000});
+                            window.location.href = "/javawebservlet/UpdateStatusServlet?username=" + username + "&status=" + status;
+                        }
+
                     }
 
                 }
-
             }
-        }
-//        function ownupdateorder(username, status) {
-//            //1. 创建Date对象
-//            var date = new Date();
-//            //5. 获得当前小时
-//            var hour = date.getHours();
-//            //6. 获得当前分钟
-//            var min = date.getMinutes();
-//            //7. 获得当前秒
-//            var sec = date.getSeconds();
-//
-//            var curr = hour * 60 * 60 + min * 60 + sec;
-//            //alert(curr);
-//            var startime = 9 * 60 * 60 + 15 * 60;
-//            var endtime = 23 * 60 * 60 + 55 * 60;
-//            var startimetext = "还没有到订餐时间！";
-//            var endtimetext = "吃饭不积极，订餐已经结束了！";
-//            if (username.length == 0) {
-//                layer.msg('请重新登录！', {icon: 1, time: 3000});
-//                //重定向，打开新页面同时把老页面关闭
-//                window.top.location.href = "/javawebservlet/login.jsp"
-//            } else {
-//                if (curr < startime) {
-//                    //alert("还没有开始");
-//                    layer.open({
-//                        type: 1
-//                        , offset: 'auto'
-//                        , id: 'layerDemo' + 1 //防止重复弹出
-//                        , content: '<div style="padding: 20px 100px;">' + startimetext + '</div>'
-//                        , btn: '关闭全部'
-//                        , btnAlign: 'c' //按钮居中
-//                        , shade: 0 //不显示遮罩
-//                        , yes: function () {
-//                            layer.closeAll();
-//                        }
-//                    });
-//                } else if (curr > endtime) {
-////            alert("已经结束");
-//                    layer.open({
-//                        type: 1
-//                        , offset: 'auto'
-//                        , id: 'layerDemo' + 1 //防止重复弹出
-//                        , content: '<div style="padding: 20px 100px;">' + endtimetext + '</div>'
-//                        , btn: '关闭全部'
-//                        , btnAlign: 'c' //按钮居中
-//                        , shade: 0 //不显示遮罩
-//                        , yes: function () {
-//                            layer.closeAll();
-//                        }
-//                    });
-//                } else if (curr >= startime && curr <= endtime) {
-//                    layer.msg('订餐成功！', {icon: 1, time: 3000});
-//                    window.location.href = "/javawebservlet/UpdateStatusServlet?username=" + username + "&status=" + status;
-//                }
-//
-//            }
-//
-//        }
+        });
+
+
     }
-    <%--<%--%>
-    <%--if (username!=null)--%>
-    <%--{SearchDao u=new SearchDao();--%>
-    <%--u.updateuserstatusbyname(username);--%>
-    <%--}--%>
-    <%--%>--%>
-    <%--this.updateorder(username);--%>
-    <%--}--%>
+
 
 </script>
 
